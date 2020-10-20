@@ -1,0 +1,48 @@
+
+sources/vuejs-fundamentals
+
+vuejs-fundamentals.zip
+
+vuejs-fundamentals/02/demos/Demos/m01-GettingStartedWithTheVueCLI/1 - before/readme.txt
+
+vuejs-fundamentals/02/demos/Demos/m01-GettingStartedWithTheVueCLI/2 - after
+
+vuejs-fundamentals/02/getting-started-with-the-vuejs-cli-slides.pdf
+
+vuejs-fundamentals/03/creating-vuejs-components-and-using-template-syntax-slides.pdf
+
+vuejs-fundamentals/03/demos/Demos/m02-CreatingVue.jsComponentsAndTemplateSyntax/1 - before
+
+vuejs-fundamentals/03/demos/Demos/m02-CreatingVue.jsComponentsAndTemplateSyntax/2 - after
+
+vuejs-fundamentals/04/demos/Demos/03-EnablingInterComponentCommunication/1 - before
+
+vuejs-fundamentals/04/demos/Demos/03-EnablingInterComponentCommunication/2 - after
+
+vuejs-fundamentals/04/enabling-inter-component-communication-slides.pdf
+
+vuejs-fundamentals/05/demos/Demos/04-RoutingFromPageToPage/1 - before
+
+vuejs-fundamentals/05/demos/Demos/04-RoutingFromPageToPage/2 - after
+
+vuejs-fundamentals/05/routing-from-page-to-page-slides.pdf
+
+vuejs-fundamentals/06/demos/Demos/m05-ManagingStateWithVuex/1 - before
+
+vuejs-fundamentals/06/demos/Demos/m05-ManagingStateWithVuex/2 - after
+
+vuejs-fundamentals/06/managing-state-and-server-communication-with-vuex-slides.pdf
+
+vuejs-fundamentals/07/creating-custom-directives-and-filters-slides.pdf
+
+vuejs-fundamentals/07/demos/Demos/m06-CreatingCustomDirectivesAndFilters/1 - before
+
+vuejs-fundamentals/07/demos/Demos/m06-CreatingCustomDirectivesAndFilters/2 - after
+
+vuejs-fundamentals/08/demos/Demos/m07-DeployingToProduction/1 - before/build-a-bot
+
+vuejs-fundamentals/08/demos/Demos/m07-DeployingToProduction/2 - after/build-a-bot
+
+vuejs-fundamentals/08/demos/Demos/m07-DeployingToProduction/2 - after/build-a-bot-server
+
+vuejs-fundamentals/08/deploying-vue-applications-to-production-slides.pdf
