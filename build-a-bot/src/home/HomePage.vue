@@ -1,20 +1,22 @@
 <template>
   <div class="home">
     <div>
-      <img class="robot" src="../assets/robot-home.png" aria-hidden="true" />
-
+      <img class="robot" src="../assets/robot-home.png"  aria-hidden="true" />
     </div>
     <div class="get-started">
-      <a href="">Get Started</a> building your first robot !
+      <router-link to="/build">Get started</router-link> building your first robot!
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Homepage',
+  name: 'HomePage',
+  props: {
+    msg: String,
+  },
 });
 </script>
 

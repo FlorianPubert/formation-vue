@@ -1,6 +1,13 @@
 <template>
-  <div :class="[position, 'part']" v-if="parts.length > 0">
-    <img :src="parts[selectedPartIndex].src" title="" />
+  <div :class="[position, 'part']">
+    <router-link :to="{
+        name: 'Parts',
+        params: {
+          id: this.selectedPart.id,
+          partType: this.selectedPart.type,
+        }}">
+      <img :src="selectedPart.src" title="arm"/>
+    </router-link>
     <button @click="selectPreviousPart()" class="prev-selector"></button>
     <button @click="selectNextPart()" class="next-selector"></button>
   </div>

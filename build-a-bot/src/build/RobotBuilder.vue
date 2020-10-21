@@ -98,19 +98,11 @@ export default defineComponent({
     };
   },
   methods: {
-    robotCost(): number {
-      return this.selectedRobot.head.cost
-      + this.selectedRobot.leftArm.cost
-      + this.selectedRobot.rightArm.cost
-      + this.selectedRobot.torso.cost
-      + this.selectedRobot.base.cost;
-    },
     addToCart(): void {
-      const robotToAdd = {
+      this.cart.push({
         ...this.selectedRobot,
-        cost: this.robotCost(),
-      } as Robot;
-      this.cart.push(robotToAdd);
+        cost: this.robotCost,
+      } as Robot);
     },
     getPreviousIndex(index: number, length: number): number {
       const newIndex = index - 1;
@@ -124,6 +116,14 @@ export default defineComponent({
   computed: {
     saleBorderClass(): string {
       return this.selectedRobot.head.onSale ? 'sale-border' : '';
+    },
+    robotCost(): number {
+      if (!this.selectedRobot) { return 0; }
+      return this.selectedRobot.head.cost
+      + this.selectedRobot.leftArm.cost
+      + this.selectedRobot.rightArm.cost
+      + this.selectedRobot.torso.cost
+      + this.selectedRobot.base.cost;
     },
   },
 });
