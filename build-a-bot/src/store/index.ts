@@ -1,14 +1,11 @@
-import { Robot } from '@/models/Robot';
 import { createStore } from 'vuex';
 
+import robotsModule from './modules/robots';
+import usersModule from './modules/users';
+
 export default createStore({
-  state: {
-    cart: Array<Robot>(),
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    robots: robotsModule,
+    users: usersModule,
   },
 });

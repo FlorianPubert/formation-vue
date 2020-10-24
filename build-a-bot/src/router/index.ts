@@ -9,6 +9,7 @@ import RobotHeads from '../parts/RobotHeads.vue';
 import RobotArms from '../parts/RobotArms.vue';
 import RobotTorsos from '../parts/RobotTorsos.vue';
 import RobotBases from '../parts/RobotBases.vue';
+import ShoppingCart from '../cart/ShoppingCart.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,6 +26,14 @@ const routes: Array<RouteRecordRaw> = [
     components: {
       default: RobotBuilder,
       sidebar: SidebarBuild,
+    },
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    components: {
+      default: ShoppingCart,
+      sidebar: SidebarStandard,
     },
   },
   {

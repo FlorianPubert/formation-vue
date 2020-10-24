@@ -8,8 +8,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { defineComponent } from 'vue';
-import Constants from '../data/parts';
+import Namespace from '@/store/namespace';
 
 export default defineComponent({
   name: 'PartInfo',
@@ -23,32 +24,37 @@ export default defineComponent({
     },
   },
   computed: {
+    ...mapState(Namespace.ROBOTS, [
+      'heads',
+      'arms',
+      'torsos',
+      'bases',
+    ]),
     part() {
       const { partType, id } = this;
       let parts;
       switch (partType) {
         case 'heads': {
-          parts = Constants.HEADS;
+          parts = this.heads;
           break;
         }
         case 'arms': {
-          parts = Constants.ARMS;
+          parts = this.arms;
           break;
         }
         case 'torsos': {
-          parts = Constants.TORSOS;
+          parts = this.torsos;
           break;
         }
         case 'bases': {
-          parts = Constants.BASES;
+          parts = this.bases;
           break;
         }
         default: {
-          parts = Constants.HEADS;
+          parts = this.heads;
           break;
         }
       }
-
       return parts.find((part) => part.id === +id);
     },
   },

@@ -20,10 +20,21 @@
 </template>
 
 <script>
+import Namespace from '@/store/namespace';
 import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
+import ActionTypes from '../store/action-types';
 
 export default defineComponent({
   name: 'BrowseParts',
+  created() {
+    this.getParts();
+  },
+  methods: {
+    ...mapActions(Namespace.ROBOTS, {
+      getParts: ActionTypes.GET_PARTS,
+    }),
+  },
 });
 </script>
 

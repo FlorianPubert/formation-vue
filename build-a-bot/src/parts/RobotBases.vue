@@ -12,13 +12,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { defineComponent } from 'vue';
-import Constants from '../data/parts';
+import Namespace from '@/store/namespace';
 
 export default defineComponent({
   name: 'RobotBases',
-  data() {
-    return { bases: Constants.BASES };
+  computed: {
+    ...mapState(Namespace.ROBOTS, [
+      'bases',
+    ]),
   },
 });
 </script>

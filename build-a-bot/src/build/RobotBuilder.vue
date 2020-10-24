@@ -20,11 +20,8 @@
     </div>
     <div class="top-row">
       <div :class="[saleBorderClass, 'top', 'part']">
-        <!-- <div class="robot-name">
-          {{selectedRobot.head.title}}
-          <span v-if="selectedRobot.head.onSale" class="sale">Sale!</span>
-        </div> -->
         <PartSelector
+          v-if="heads.length > 0"
           :parts="heads"
           :position="'top'"
           @partSelected="part => selectedRobot.head=part"/>
@@ -32,40 +29,27 @@
     </div>
     <div class="middle-row">
       <PartSelector
+        v-if="arms.length > 0"
         :parts="arms"
         :position="'left'"
         @partSelected="part => selectedRobot.leftArm=part"/>
       <PartSelector
+        v-if="torsos.length > 0"
         :parts="torsos"
         :position="'center'"
         @partSelected="part => selectedRobot.torso=part"/>
       <PartSelector
+        v-if="arms.length > 0"
         :parts="arms"
         :position="'right'"
         @partSelected="part => selectedRobot.rightArm=part"/>
     </div>
     <div class="bottom-row">
       <PartSelector
+        v-if="bases.length > 0"
         :parts="bases"
         :position="'bottom'"
         @partSelected="part => selectedRobot.base=part"/>
-    </div>
-    <div>
-      <h1>Cart</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Robot</th>
-            <th class="cost">Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(robot, index) in cart" :key="index">
-            <td>{{robot.head.title}}</td>
-            <td class="cost">{{robot.cost}}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </template>
@@ -73,21 +57,22 @@
 <script lang="ts">
 import { RobotPart } from '@/models/RobotPart';
 import { defineComponent } from 'vue';
-import Constants from '../data/parts';
+import { mapState, mapActions } from 'vuex';
 import { Robot } from '../models/Robot';
 import PartSelector from './PartSelector.vue';
 import CollapsibleSection from '../shared/CollapsibleSection.vue';
+import ActionTypes from '../store/action-types';
+import Namespace from '../store/namespace';
 
 export default defineComponent({
   name: 'RobotBuilder',
   components: { PartSelector, CollapsibleSection },
+  created() {
+    this.getParts();
+  },
   data() {
     return {
       cart: Array<Robot>(),
-      heads: Constants.HEADS,
-      arms: Constants.ARMS,
-      torsos: Constants.TORSOS,
-      bases: Constants.BASES,
       selectedRobot: {
         head: {} as RobotPart,
         leftArm: {} as RobotPart,
@@ -98,11 +83,15 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapActions(Namespace.ROBOTS, {
+      getParts: ActionTypes.GET_PARTS,
+      addRobotToCart: ActionTypes.ADD_ROBOT_TO_CART,
+    }),
     addToCart(): void {
-      this.cart.push({
+      this.addRobotToCart({
         ...this.selectedRobot,
         cost: this.robotCost,
-      } as Robot);
+      } as Robot).then(() => this.$router.push('/cart'));
     },
     getPreviousIndex(index: number, length: number): number {
       const newIndex = index - 1;
@@ -114,6 +103,12 @@ export default defineComponent({
     },
   },
   computed: {
+    ...mapState(Namespace.ROBOTS, [
+      'heads',
+      'arms',
+      'torsos',
+      'bases',
+    ]),
     saleBorderClass(): string {
       return this.selectedRobot.head.onSale ? 'sale-border' : '';
     },
@@ -236,14 +231,6 @@ export default defineComponent({
   width:210px;
   padding:3px;
   font-size:16px;
-}
-td, th {
-  text-align: left;
-  padding: 5px;
-  padding-right: 20px;
-}
-.cost {
-  text-align: right;
 }
 .sale-border {
   border: 3px solid red;
